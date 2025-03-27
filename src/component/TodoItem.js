@@ -34,30 +34,30 @@ const TodoItem = ({ task, setTask }) => {
         task.map((task, index) => (
           <div className='flex mb-2 p-2'>
           
-           if(editTaskIndex === index) {
-            <input 
+          {editTaskIndex=== index ? (
+             <input 
             type='text'
-            value={editTask}
+            value={editedTask}
             onChange={(e) => setEditedTask(e.target.value)}
             className='bg-blue-100 w-64 h-12 p-3 mr-2'>
-            </input>
-           }
+            </input>) : (        
           <p 
           className='w-64 h-10 bg-white p-2'
           key={index}>
           Task {index + 1}: {task}
           </p>
+            )}
 
-          if (editTaskIndex === index) {
+        { editTaskIndex === index ? (
             <button onClick={() => saveTask(index)}  
             className='p-2 m-2 border-box rounded bg-green-500 text-white hover:bg-green-600'> Save</button>
-          }
-
+          
+        ) : (
           <button onClick={() => editTask(index)}
           className='bg-sky-500 w-32 h-10 border-box rounded ml-10 mr-10 text-center hover:bg-red-500'
           >Edit task
           </button>
-
+        )}
           <button onClick={() => deleteTask(index)}
           className='bg-sky-500 w-32 h-10 border-box rounded hover:bg-red-500'
           >Delete task

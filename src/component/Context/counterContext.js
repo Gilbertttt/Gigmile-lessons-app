@@ -2,19 +2,22 @@ import React, { createContext } from 'react'
 import { useContext, useState } from 'react'
 
 
-const counterContext = ({children}) => {
-    const [count, setCount] = useState(count);
-    const counterContext = createContext();
+  const CounterContext = createContext ({
+    count: 0,
+    setCount: () => {},
+  })
+
+const CounterProvider = ({ children }) => {
+    const [count, setCount] = useState(0)
 
     return (
-        <counterContext.Provider value={count, setCount}>
-        <div>
-        <h1>count {count}</h1>
-        <button onClick={() => {
-            setCount(count + 1)
-        }}></button>
+      <CounterContext.Provider value={{count, setCount}}>
+       <div> 
+        {children}
         </div>
-        </counterContext.Provider>
+      </CounterContext.Provider>
+       
+    
         
     )
 }
@@ -22,5 +25,5 @@ const counterContext = ({children}) => {
 
 
 
-export default counterContext 
+export {CounterContext, CounterProvider}
 
